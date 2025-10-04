@@ -25,7 +25,7 @@ export const ChatContainer = ({ onSendMessage, onPlayTTS }: ChatContainerProps) 
   return (
     <div className="flex h-screen bg-white dark:bg-gray-900">
       <div className="flex-1 flex flex-col">
-        <div className="border-b border-gray-200 dark:border-gray-800 px-6 py-4">
+        <div className="border-b border-gray-200 dark:border-gray-800 px-4 lg:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -49,7 +49,7 @@ export const ChatContainer = ({ onSendMessage, onPlayTTS }: ChatContainerProps) 
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 bg-gray-50 dark:bg-gray-900">
+        <div className="flex-1 overflow-y-auto p-4 lg:p-8 bg-gray-50 dark:bg-gray-900">
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center max-w-2xl mx-auto">
               <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-8">

@@ -11,7 +11,7 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
   const { isTTSEnabled, isPlaying } = useChatStore();
 
   return (
-    <div className="max-w-4xl mx-auto mb-6 animate-fade-in">
+    <div className="max-w-4xl mx-auto mb-6 animate-fade-in px-2 lg:px-0">
       <div
         className={`flex ${
           message.sender === 'user' ? 'justify-end' : 'justify-start'

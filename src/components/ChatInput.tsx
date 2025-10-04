@@ -24,7 +24,7 @@ export const ChatInput = ({ onSendMessage }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6">
+    <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 lg:p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-end space-x-4">
           <div className="flex-1">
