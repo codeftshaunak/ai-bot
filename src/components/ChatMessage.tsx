@@ -11,7 +11,7 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
   const { isTTSEnabled, isPlaying } = useChatStore();
 
   return (
-    <div className="max-w-4xl mx-auto mb-6 animate-fade-in">
+    <div className="mb-6 animate-fade-in">
       <div
         className={`flex ${
           message.sender === 'user' ? 'justify-end' : 'justify-start'
@@ -19,8 +19,8 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
       >
         <div className={`flex items-start max-w-2xl ${
           message.sender === 'user'
-            ? 'flex-row-reverse space-x-reverse space-x-3 ml-12'
-            : 'space-x-3 mr-12'
+            ? 'flex-row-reverse space-x-reverse space-x-3'
+            : 'space-x-3'
         }`}>
           <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
             message.sender === 'user'
@@ -38,10 +38,10 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
             )}
           </div>
           <div
-            className={`relative px-4 py-3 rounded-2xl shadow-sm border ${
+            className={`relative px-4 py-3 rounded-2xl shadow-sm ${
               message.sender === 'user'
-                ? 'bg-blue-500 text-white border-blue-600 dark:bg-blue-600 dark:border-blue-700'
-                : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700'
+                ? 'bg-blue-500 text-white border-2 border-blue-700 dark:bg-blue-600 dark:border-blue-800'
+                : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700'
             } ${message.isTyping ? 'animate-pulse' : ''}`}
           >
           {message.sender === 'ai' && (
