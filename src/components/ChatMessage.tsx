@@ -63,8 +63,8 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
               )}
             </div>
           )}
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
-          <div className={`text-xs mt-2 ${
+          <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
+          <div className={`text-xs mt-2 opacity-70 ${
             message.sender === 'user'
               ? 'text-blue-100'
               : 'text-gray-500 dark:text-gray-400'
