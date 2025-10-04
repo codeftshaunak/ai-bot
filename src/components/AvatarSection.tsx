@@ -4,7 +4,7 @@ export const AvatarSection = () => {
   const { isConnected, isLoading, isTTSEnabled, setIsTTSEnabled } = useChatStore();
 
   return (
-    <div className="w-full lg:w-80 h-full bg-gradient-to-b from-slate-50/80 via-blue-50/80 to-indigo-100/80 dark:from-gray-900/80 dark:via-slate-900/80 dark:to-indigo-950/80 backdrop-blur-xl border-l border-gray-200/50 dark:border-gray-700/50 flex flex-col">
+    <div className="w-full lg:w-80 h-full bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col">
       {/* Avatar/Video Section */}
       <div className="p-6 flex flex-col items-center justify-center flex-1">
         <div className="relative mb-6">
