@@ -70,7 +70,7 @@ export const ChatContainer = ({ onSendMessage, onPlayTTS }: ChatContainerProps) 
                   <button
                     key={index}
                     onClick={() => onSendMessage(example)}
-                    className="w-full text-left p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-sm group"
+                    className="w-full text-left p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
                   >
                     <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
                       {example}
