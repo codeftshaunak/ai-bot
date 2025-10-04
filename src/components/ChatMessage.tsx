@@ -11,7 +11,7 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
   const { isTTSEnabled, isPlaying } = useChatStore();
 
   return (
-    <div className="max-w-4xl mx-auto mb-6 animate-fade-in px-4 lg:px-0">
+    <div className="max-w-4xl mx-auto mb-6 animate-fade-in">
       <div
         className={`flex ${
           message.sender === 'user' ? 'justify-end' : 'justify-start'
@@ -38,10 +38,10 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
             )}
           </div>
           <div
-            className={`relative px-4 py-3 rounded-2xl shadow-sm ${
+            className={`relative px-4 py-3 rounded-2xl shadow-sm border ${
               message.sender === 'user'
-                ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100 border border-blue-200 dark:border-blue-800'
-                : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700'
+                ? 'bg-blue-500 text-white border-blue-600 dark:bg-blue-600 dark:border-blue-700'
+                : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-gray-200 dark:border-gray-700'
             } ${message.isTyping ? 'animate-pulse' : ''}`}
           >
           {message.sender === 'ai' && (
@@ -70,7 +70,7 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
           <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
           <div className={`text-xs mt-2 opacity-70 ${
             message.sender === 'user'
-              ? 'text-blue-600 dark:text-blue-300'
+              ? 'text-blue-100'
               : 'text-gray-500 dark:text-gray-400'
           }`}>
             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

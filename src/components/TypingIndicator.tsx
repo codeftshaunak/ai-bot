@@ -1,6 +1,6 @@
 export const TypingIndicator = () => {
   return (
-    <div className="max-w-4xl mx-auto mb-6 px-4 lg:px-0">
+    <div className="max-w-4xl mx-auto mb-6">
       <div className="flex justify-start">
         <div className="flex items-start space-x-3 max-w-2xl mr-12">
           <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-600 dark:bg-gray-400 flex items-center justify-center">
