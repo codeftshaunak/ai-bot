@@ -12,15 +12,46 @@ export const AvatarSection = () => {
             <div className="w-full h-full rounded-3xl bg-white dark:bg-gray-900 flex items-center justify-center overflow-hidden">
               {/* Avatar/Video Content */}
               <div className="relative w-full h-full flex items-center justify-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.847a4.5 4.5 0 003.09 3.09L15.75 12l-2.847.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423L16.5 15.75l.394 1.183a2.25 2.25 0 001.423 1.423L19.5 18.75l-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                  </svg>
+                {/* Video Avatar Placeholder - Replace with real video file */}
+                <div className="relative w-full h-full rounded-3xl overflow-hidden bg-gradient-to-br from-blue-500 via-purple-600 to-indigo-700">
+                  {/* Animated background placeholder */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-purple-500/20 to-indigo-600/20 animate-pulse"></div>
+
+                  {/* Avatar icon overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-24 h-24 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Video element - Ready for real video */}
+                  <video
+                    className="w-full h-full object-cover opacity-0 pointer-events-none"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onCanPlay={(e) => {
+                      // Show video when loaded, hide placeholder
+                      e.currentTarget.style.opacity = '1';
+                      const placeholder = e.currentTarget.parentElement?.querySelector('.absolute');
+                      if (placeholder) (placeholder as HTMLElement).style.display = 'none';
+                    }}
+                  >
+                    <source src="/avatar-video.mp4" type="video/mp4" />
+                    <source src="/avatar-video.webm" type="video/webm" />
+                    {/* Video will be hidden until a real file is added */}
+                  </video>
+
+                  {/* Instructions for adding video (dev only) */}
+                  <div className="absolute bottom-2 left-2 right-2 text-center">
+                    <div className="text-xs text-white/60 bg-black/20 backdrop-blur-sm rounded px-2 py-1">
+                      Video Ready
+                    </div>
+                  </div>
                 </div>
-                {/* Placeholder for future video */}
-                {/* <video className="w-full h-full object-cover rounded-3xl" autoPlay muted loop>
-                  <source src="/avatar-video.mp4" type="video/mp4" />
-                </video> */}
               </div>
             </div>
           </div>
