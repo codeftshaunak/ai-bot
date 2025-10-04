@@ -11,16 +11,20 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
   const { isTTSEnabled, isPlaying } = useChatStore();
 
   return (
-    <div className="max-w-4xl mx-auto mb-6 animate-fade-in px-2 lg:px-0">
+    <div className="max-w-4xl mx-auto mb-6 animate-fade-in px-4 lg:px-0">
       <div
         className={`flex ${
           message.sender === 'user' ? 'justify-end' : 'justify-start'
         }`}
       >
-        <div className={`flex items-start space-x-3 max-w-2xl ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+        <div className={`flex items-start max-w-2xl ${
+          message.sender === 'user'
+            ? 'flex-row-reverse space-x-reverse space-x-3 ml-12'
+            : 'space-x-3 mr-12'
+        }`}>
           <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
             message.sender === 'user'
-              ? 'bg-blue-600'
+              ? 'bg-blue-500'
               : 'bg-gray-600 dark:bg-gray-400'
           }`}>
             {message.sender === 'user' ? (
@@ -34,9 +38,9 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
             )}
           </div>
           <div
-            className={`relative px-4 py-3 rounded-2xl ${
+            className={`relative px-4 py-3 rounded-2xl shadow-sm ${
               message.sender === 'user'
-                ? 'bg-blue-600 text-white'
+                ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100 border border-blue-200 dark:border-blue-800'
                 : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700'
             } ${message.isTyping ? 'animate-pulse' : ''}`}
           >
@@ -66,7 +70,7 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
           <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
           <div className={`text-xs mt-2 opacity-70 ${
             message.sender === 'user'
-              ? 'text-blue-100'
+              ? 'text-blue-600 dark:text-blue-300'
               : 'text-gray-500 dark:text-gray-400'
           }`}>
             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
