@@ -44,36 +44,37 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
                 : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700'
             } ${message.isTyping ? 'animate-pulse' : ''}`}
           >
-          {message.sender === 'ai' && (
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">AI</span>
-              {isTTSEnabled && onPlayTTS && (
-                <button
-                  onClick={onPlayTTS}
-                  className={`p-1.5 rounded-lg transition-all duration-200 ${
-                    isPlaying
-                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'
-                  }`}
-                  disabled={isPlaying}
-                  title={isPlaying ? 'Playing...' : 'Play audio'}
-                >
-                  {isPlaying ? (
-                    <VolumeX className="h-4 w-4" />
-                  ) : (
-                    <Volume2 className="h-4 w-4" />
-                  )}
-                </button>
-              )}
+            {message.sender === 'ai' && (
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">AI</span>
+                {isTTSEnabled && onPlayTTS && (
+                  <button
+                    onClick={onPlayTTS}
+                    className={`p-1.5 rounded-lg transition-all duration-200 ${
+                      isPlaying
+                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'
+                    }`}
+                    disabled={isPlaying}
+                    title={isPlaying ? 'Playing...' : 'Play audio'}
+                  >
+                    {isPlaying ? (
+                      <VolumeX className="h-4 w-4" />
+                    ) : (
+                      <Volume2 className="h-4 w-4" />
+                    )}
+                  </button>
+                )}
+              </div>
+            )}
+            <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
+            <div className={`text-xs mt-2 opacity-70 ${
+              message.sender === 'user'
+                ? 'text-blue-100'
+                : 'text-gray-500 dark:text-gray-400'
+            }`}>
+              {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </div>
-          )}
-          <p className="leading-relaxed whitespace-pre-wrap">{message.content}</p>
-          <div className={`text-xs mt-2 opacity-70 ${
-            message.sender === 'user'
-              ? 'text-blue-100'
-              : 'text-gray-500 dark:text-gray-400'
-          }`}>
-            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </div>
         </div>
       </div>
