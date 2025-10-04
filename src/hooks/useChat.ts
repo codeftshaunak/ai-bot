@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useChatStore } from '../store/chatStore';
 import { sseService, sendMessage } from '../services/apiService';
 import { ttsService } from '../services/ttsService';
@@ -12,6 +12,8 @@ export const useChat = () => {
     setIsPlaying,
     isTTSEnabled,
   } = useChatStore();
+
+  const [currentlyPlayingId, setCurrentlyPlayingId] = useState<string | null>(null);
 
   const connectToStream = useCallback(async () => {
     try {
@@ -78,18 +80,30 @@ export const useChat = () => {
     }
   }, [addMessage, setIsLoading]);
 
-  const handlePlayTTS = useCallback(async (text: string) => {
+  const handlePlayTTS = useCallback(async (text: string, messageId: string) => {
     if (!isTTSEnabled) return;
 
     try {
+      setCurrentlyPlayingId(messageId);
       await ttsService.playText(text);
     } catch (error) {
       console.error('Error playing TTS:', error);
+      setCurrentlyPlayingId(null);
     }
   }, [isTTSEnabled]);
 
+  const handleStopTTS = useCallback(() => {
+    ttsService.stop();
+    setCurrentlyPlayingId(null);
+  }, []);
+
   useEffect(() => {
-    ttsService.setOnPlayingChange(setIsPlaying);
+    ttsService.setOnPlayingChange((isPlaying) => {
+      setIsPlaying(isPlaying);
+      if (!isPlaying) {
+        setCurrentlyPlayingId(null);
+      }
+    });
 
     const initializeConnection = async () => {
       try {
@@ -101,15 +115,25 @@ export const useChat = () => {
 
     initializeConnection();
 
+    const handleBeforeUnload = () => {
+      ttsService.stop();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
     return () => {
       sseService.disconnect();
       ttsService.stop();
+      setCurrentlyPlayingId(null);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [connectToStream, setIsPlaying]);
 
   return {
     handleSendMessage,
     handlePlayTTS,
+    handleStopTTS,
+    currentlyPlayingId,
     connectToStream,
   };
 };

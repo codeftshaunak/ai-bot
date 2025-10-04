@@ -5,10 +5,12 @@ import { useChatStore } from '../store/chatStore';
 interface ChatMessageProps {
   message: Message;
   onPlayTTS?: () => void;
+  onStopTTS?: () => void;
+  isCurrentlyPlaying?: boolean;
 }
 
-export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
-  const { isTTSEnabled, isPlaying } = useChatStore();
+export const ChatMessage = ({ message, onPlayTTS, onStopTTS }: ChatMessageProps) => {
+  const { isTTSEnabled } = useChatStore();
 
   return (
     <div className="mb-6 animate-fade-in">
@@ -48,22 +50,22 @@ export const ChatMessage = ({ message, onPlayTTS }: ChatMessageProps) => {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-gray-600 dark:text-gray-400">AI</span>
                 {isTTSEnabled && onPlayTTS && (
-                  <button
-                    onClick={onPlayTTS}
-                    className={`p-1.5 rounded-lg transition-all duration-200 ${
-                      isPlaying
-                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'
-                    }`}
-                    disabled={isPlaying}
-                    title={isPlaying ? 'Playing...' : 'Play audio'}
-                  >
-                    {isPlaying ? (
-                      <VolumeX className="h-4 w-4" />
-                    ) : (
+                  <div className="flex space-x-1">
+                    <button
+                      onClick={onPlayTTS}
+                      className={`p-1.5 rounded-lg ${true ? 'bg-purple-500 text-white' : 'bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'}`}
+                      title="Play audio"
+                    >
                       <Volume2 className="h-4 w-4" />
-                    )}
-                  </button>
+                    </button>
+                    <button
+                      onClick={() => onStopTTS?.()}
+                      className="p-1.5 rounded-lg bg-red-500 text-white"
+                      title="Stop audio"
+                    >
+                      <VolumeX className="h-4 w-4" />
+                    </button>
+                  </div>
                 )}
               </div>
             )}

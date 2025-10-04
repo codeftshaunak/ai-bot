@@ -7,10 +7,12 @@ import { AvatarSection } from './AvatarSection';
 
 interface ChatContainerProps {
   onSendMessage: (message: string) => void;
-  onPlayTTS: (text: string) => void;
+  onPlayTTS: (text: string, messageId: string) => void;
+  onStopTTS: () => void;
+  currentlyPlayingId: string | null;
 }
 
-export const ChatContainer = ({ onSendMessage, onPlayTTS }: ChatContainerProps) => {
+export const ChatContainer = ({ onSendMessage, onPlayTTS, onStopTTS, currentlyPlayingId }: ChatContainerProps) => {
   const { messages, isLoading } = useChatStore();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +87,9 @@ export const ChatContainer = ({ onSendMessage, onPlayTTS }: ChatContainerProps) 
             <ChatMessage
               key={message.id}
               message={message}
-              onPlayTTS={() => onPlayTTS(message.content)}
+              onPlayTTS={() => onPlayTTS(message.content, message.id)}
+              onStopTTS={onStopTTS}
+              isCurrentlyPlaying={currentlyPlayingId === message.id}
             />
           ))}
 
