@@ -109,7 +109,7 @@ export const ChatContainer = ({ onSendMessage, onPlayTTS }: ChatContainerProps) 
         <ChatInput onSendMessage={onSendMessage} />
       </div>
 
-      <div className="hidden lg:block">
+      <div className="hidden lg:flex lg:h-full">
         <AvatarSection />
       </div>
     </div>
